@@ -7,4 +7,5 @@ config/openssl/csr/*
 config/openssl/export/*
 config/openssl/private/*
 config/openssl/*.old
+config/openssl/*.txt
 config/openssl/*.attr
