@@ -2,6 +2,11 @@
 *.html
 
 # Ignore openssl, ssl output
+ca/*
+certs/*
+csr/*
+export/*
+private/*
 config/openssl/ca/*
 config/openssl/certs/*
 config/openssl/csr/*
