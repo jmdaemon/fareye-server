@@ -1,3 +1,5 @@
 #!/bin/bash
 
-openssl req -new -nodes -out server-req.pem -keyout private/server-key.pem -days 365 -config openssl.cnf
+CSR="csr/server"
+KEY="keys/server"
+openssl req -new -nodes -out $CSR/server-req.pem -keyout private/$KEY/server-key.pem -days 365 -config openssl.cnf
