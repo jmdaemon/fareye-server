@@ -2,11 +2,13 @@
 *.html
 
 # Ignore openssl, ssl output
-config/openssl/ca/*
-config/openssl/certs/*
-config/openssl/csr/*
-config/openssl/export/*
-config/openssl/private/*
+ca
+certs
+csr
+export
+private
+pkcs12
+*.jks
 config/openssl/*.old
 config/openssl/*.txt
 config/openssl/*.attr
