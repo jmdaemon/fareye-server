@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-APACHE="/etc/apache2/ssl"
+#APACHE="/etc/apache2/ssl"
+APACHE="./"
 CERT="certs/client"
 kEY="keys/client"
 
