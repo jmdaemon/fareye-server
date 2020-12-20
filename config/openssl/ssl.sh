@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source make_subdirs.sh
+
 # Configure ssl
 source setup_ssl.sh
 
