@@ -1,10 +1,10 @@
 # Ignore Asciidoc output files
 *.html
 
-./config/openssl/ca/*
-./config/openssl/certs/*
-./config/openssl/csr/*
-./config/openssl/export/*
-./config/openssl/private/*
-./config/openssl/*.old
-./config/openssl/*.attr
+config/openssl/ca/*
+config/openssl/certs/*
+config/openssl/csr/*
+config/openssl/export/*
+config/openssl/private/*
+config/openssl/*.old
+config/openssl/*.attr
