@@ -8,6 +8,7 @@ csr
 export
 private
 pkcs12
+*.jks
 config/openssl/*.old
 config/openssl/*.txt
 config/openssl/*.attr
