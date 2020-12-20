@@ -1,2 +1,15 @@
 # Ignore Asciidoc output files
 *.html
+
+# Ignore openssl, ssl output
+config/openssl/ca/*
+config/openssl/certs/*
+config/openssl/csr/*
+config/openssl/export/*
+config/openssl/private/*
+config/openssl/*.old
+config/openssl/*.txt
+config/openssl/*.attr
+
+# Ignore apache output
+config/openssl/*.conf
