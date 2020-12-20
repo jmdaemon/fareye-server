@@ -1,1 +1,2 @@
 V	211220194948Z		100001	unknown	/C=CA/ST=British Columbia/O=./OU=./CN=localhost
+V	211220195406Z		100002	unknown	/C=CA/ST=British Columbia/O=./OU=./CN=client
