@@ -4,7 +4,7 @@
 #APACHE_CONFIG_FILE="/etc/apache2/extra/httpd-vhosts.conf"
 APACHE_CONFIG_FILE="httpd-vhosts.conf"
 
-sudo tee "
+echo "
 <VirtualHost *:443>
     ServerName localhost
     DocumentRoot "/Users/rhowlett/Sites/localhost"
@@ -22,4 +22,8 @@ sudo tee "
         Require all granted
     </Directory>
 </VirtualHost>
-" | APACHE_CONFIG_FILE
+" | sudo tee $APACHE_CONFIG_FILE
+
+apachectl restart
+
+# Install CA cert (cacert.pem) manually
