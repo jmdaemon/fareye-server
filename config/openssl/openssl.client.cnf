@@ -41,34 +41,6 @@ distinguished_name = req_distinguished_name
 req_extensions = v3_req
 
 [ req_distinguished_name ]
-#countryName = Country Name (2 letter code)
-#countryName_default = CA
-#countryName_min = 2
-#countryName_max = 2
-
-#stateOrProvinceName = State or Province Name (full name)
-#stateOrProvinceName_default = British Columbia
-
-#localityName = Locality Name (eg, city)
-#localityName_default = Delta
-
-#0.organizationName = Organization Name (eg, company)
-#0.organizationName_default = .
-
-## we can do this but it is not needed normally :-)
-##1.organizationName = Second Organization Name (eg, company)
-##1.organizationName_default = World Wide Web Pty Ltd
-
-#organizationalUnitName = Organizational Unit Name (eg, section)
-#organizationalUnitName_default = .
-
-#commonName = Common Name (eg, YOUR name)
-#commonName_max = 64
-#commonName_default = client
-
-#emailAddress = Email Address
-#emailAddress_max = 64
-
 C   = CA
 ST  = British Columbia 
 L   = Delta
@@ -87,32 +59,6 @@ challengePassword_max = 20
 unstructuredName = An optional company name
 
 [ req_distinguished_name ]
-#countryName = Country Name (2 letter code)
-#countryName_default = CA
-#countryName_min = 2
-#countryName_max = 2
-
-#stateOrProvinceName = State or Province Name (full name)
-#stateOrProvinceName_default = British Columbia 
-
-#localityName = Locality Name (eg, city)
-
-#0.organizationName = Organization Name (eg, company)
-#0.organizationName_default = .
-
-## we can do this but it is not needed normally :-)
-##1.organizationName = Second Organization Name (eg, company)
-##1.organizationName_default = World Wide Web Pty Ltd
-
-#organizationalUnitName = Organizational Unit Name (eg, section)
-#organizationalUnitName_default = .
-
-#commonName = Common Name (eg, YOUR name)
-#commonName_max = 64
-#commonName_default = client
-
-#emailAddress = Email Address
-#emailAddress_max = 64
 C   = CA
 ST  = British Columbia 
 L   = Delta
@@ -144,13 +90,3 @@ subjectKeyIdentifier = hash
 
 [ alt_names ]
 DNS.1 = localhost
-#DNS.1 = 127.0.0.1
-#DNS.2 = localhost
-#DNS.3 = localhost.localdomain
-#DNS.4 = 127.0.0.1 IPAddress: 127.0.0.1
-#DNS.5 = localhost IPAddress: 127.0.0.1
-#DNS.6 = server IPAddress: 127.0.0.1
-#DNS.7 = client IPAddress: 127.0.0.1
-#DNS.8 = arch IPAddress: 127.0.0.1
-#DNS.9 = %%DOMAIN%%
-#DNS.10 = arch
