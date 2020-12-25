@@ -13,6 +13,9 @@ PASS="pass"
 DAYS="365"
 
 # Output Files
+SERIAL="database/serial"
+CERT_INDEX="database/certindex.txt"
+
 CA_CERT="ca/cacert.pem"
 CA_KEY="private/ca/cakey.pem"
 
@@ -31,13 +34,14 @@ make_subdirs() {
         certs/server certs/client \
         csr/server csr/client \
         private/ca/ private/keys/server private/keys/client \
+        database \
         "export/pkcs12"
 }
 
 
 setup_ssl() {
-    echo '100001' > serial
-    touch certindex.txt
+    echo '100001' > $SERIAL
+    touch $CERT_INDEX
 }
 
 create_ca() { 

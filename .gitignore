@@ -9,6 +9,7 @@ export
 private
 pkcs12
 *.jks
+database
 config/openssl/*.old
 config/openssl/*.txt
 config/openssl/*.attr

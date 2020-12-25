@@ -9,11 +9,11 @@ dir = .
 default_ca = CA_default
 
 [ CA_default ]
-serial = $dir/serial
-database = $dir/certindex.txt
+serial = $dir/database/serial
+database = $dir/database/certindex.txt
 new_certs_dir = $dir/certs
-certificate = $dir/cacert.pem
-private_key = $dir/private/cakey.pem
+certificate = $dir/ca/cacert.pem
+private_key = $dir/private/ca/cakey.pem
 default_days = 365
 default_md = sha512
 preserve = no
