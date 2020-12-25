@@ -65,7 +65,8 @@ L   = Delta
 O   = .
 #OU = Org Unit Name
 #CN = Our Company Llc
-CN  = localhost 
+CN  = client
+
 
 # SET-ex3 = SET extension number 3
 
@@ -88,5 +89,4 @@ subjectKeyIdentifier = hash
 
 
 [ alt_names ]
-DNS.1 = localhost 
-
+DNS.1 = localhost

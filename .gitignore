@@ -8,10 +8,8 @@ csr
 export
 private
 pkcs12
+database
 *.jks
-config/openssl/*.old
-config/openssl/*.txt
-config/openssl/*.attr
 
 # Ignore apache output
 config/openssl/*.conf
