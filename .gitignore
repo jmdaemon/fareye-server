@@ -12,6 +12,7 @@ pkcs12
 config/openssl/*.old
 config/openssl/*.txt
 config/openssl/*.attr
+serial
 
 # Ignore apache output
 config/openssl/*.conf
