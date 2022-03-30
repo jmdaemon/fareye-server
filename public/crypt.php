@@ -1,18 +1,25 @@
 <?php
 
-class Encryption {
+class Crypt {
     private $data;
     private $iv;
     private $key;
 
+    // Setters
+    public function setKey($key)    { $key = $key; }
+    public function setIV($iv)      { $iv = $iv; }
+    public function setData($data)  { $iv = $data; }
+
+    // Getters
+    public function getKey()        { return $this->key; }
+    public function getIV()         { return $this->iv; }
+    public function getData()       { return $this->data; }
+}
+
+class AesUtility extends Crypt {
     const AES = 'AES-256-CBC';
     // private const RSA = "";
     // AES-256 Encryption
-
-    // Setters
-    public function setKey($key) { $key = $key; }
-
-    // Getters
 
     public function encrypt($data) { return openssl_encrypt($data, "AES-256-CBC", $key, $iv); }
     public function decrypt($data, $iv) {
