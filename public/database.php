@@ -37,7 +37,7 @@ class MySQLDatabase extends Database {
     public function __destruct() { $this->pdo = null; }
 }
 
-class Users extends MySQLDatabase {
+class UsersTable extends MySQLDatabase {
     /**
      * create the tasks table
      * @return boolean returns true on success or false on failure
@@ -64,10 +64,9 @@ EOSQL;
 EOSQL;
         return $this->pdo->exec($sql);
     }
-
 }
 
 // create tasks table
-$obj = new Users();
+$obj = new UsersTable();
 $obj->createTaskTable();
 ?>
