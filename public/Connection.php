@@ -6,23 +6,14 @@
 class Users {
 
     /**
-     * database host
-     */
+    * DB_HOST: Domain of the site
+    * DB_NAME: Name of the database
+    * DB_USER: Owner of the database
+    * DB_PASSWORD: Owner's password to the database
+    */
     const DB_HOST = 'localhost';
-
-    /**
-     * database name
-     */
-    const DB_NAME = 'id6011112_atm
-';
-
-    /**
-     * database user
-     */
+    const DB_NAME = 'id6011112_atm ';
     const DB_USER = 'id6011112_joseph';
-    /*
-     * database password
-     */
     const DB_PASSWORD = '';
 
     /**
@@ -34,8 +25,7 @@ class Users {
     /**
      * Open the database connection
      */
-    public function __construct()
-    {
+    public function __construct() {
         // open database connection
         $conStr = sprintf("mysql:host=%s;dbname=%s", self::DB_HOST, self::DB_NAME);
         try {
@@ -48,8 +38,7 @@ class Users {
     /**
      * close the database connection
      */
-    public function __destruct()
-    {
+    public function __destruct() {
         // close the database connection
         $this->pdo = null;
     }
@@ -58,8 +47,7 @@ class Users {
      * create the tasks table
      * @return boolean returns true on success or false on failure
      */
-    public function createTaskTable()
-    {
+    public function createTaskTable() {
         $sql = <<<EOSQL
             CREATE TABLE IF NOT EXISTS tasks (
                 task_id     INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,8 +60,7 @@ EOSQL;
         return $this->pdo->exec($sql);
     }
     
-    public function insUser()
-    {
+    public function insUser() {
         $sql = <<<EOSQL
         INSERT INTO Users
         VALUES (
@@ -88,5 +75,4 @@ EOSQL;
 // create tasks table
 $obj = new Users();
 $obj->createTaskTable();
-
 ?>
