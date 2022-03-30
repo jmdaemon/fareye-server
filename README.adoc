@@ -1,3 +1,0 @@
-= Banking Application: Server
-
-=== TODO:
