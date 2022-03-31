@@ -19,6 +19,10 @@ switch ($request) {
     case "add_account":
         $user = parse_user($_POST);
         add_account($pdo, $user);
+    case "append_history":
+        $user = parse_user($_POST);
+        $msg = parse_message($_POST);
+        logMessage($pdo, $user, $msg);
 
 }
 
