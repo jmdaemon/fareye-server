@@ -75,4 +75,27 @@ function add_account($pdo, $user) {
         $results === TRUE, $query, $pdo);
 
 }
+
+class Message {
+    private $value;
+
+    public function getMessage() { return $this->value; }
+    public function setMessage($msg) { $this->value = $msg; }
+}
+
+// Parse a post into a Message
+function parse_message($post) {
+    $msg = new Message;
+    $history = $post['history'];
+    $msg->setMessage($history);
+    return $msg;
+}
+
+// Appends the message to the user's transaction log
+function logMessage($pdo, $user, $msg) {
+        $query = "UPDATE USERS SET history=CONCAT(history, '$msg->getMessage()') WHERE pin=$user->getPin()";
+        $results = mysqli_query($pdo, $query);
+        checkResult("Account history updated.", "History failed to update.",
+            $results === TRUE, $query, $pdo);
+}
 ?>
