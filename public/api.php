@@ -48,16 +48,28 @@ class User {
     public function setPassword($pass)    { $this->pass = $pass; }
 }
 
+// Parse a post request into a user
+function parse_user($post) {
+    $pin    = $post['pin'];
+    $pass   = $post['password'];
+    $fname  = $post['firstName'];
+    $mname  = $post['middleName'];
+    $lname  = $post['lastName'];
+
+    $user = new User;
+    $user->setFirstName($fname);
+    $user->setMiddleName($mname);
+    $user->setMiddleName($lname);
+    $user->setPin($pin);
+    $user->setPassword($pass);
+    return $user;
+}
+
 // Adds an account to the database
-function add_account($pdo) {
-    $pass   = $_POST['password'];
-    $fname  = $_POST['firstName'];
-    $mname  = $_POST['middleName'];
-    $lname  = $_POST['lastName'];
-    $pin    = $_POST['pin'];
+function add_account($pdo, $user) {
     $query = "INSERT INTO
             USERS  (fname, mname, lname, balance, pin, history, password)
-            VALUES ('$fname', '$mname', '$lname', 0.0, $pin, '', '$pass');";
+            VALUES ('$user->fname', '$user->mname', '$user->lname', 0.0, $user->pin, '', '$user->pass');";
     $results = mysqli_query($pdo, $query);
     return checkResult("Account Creation Successful.", "Account Creation Failed.",
         $results === TRUE, $query, $pdo);
