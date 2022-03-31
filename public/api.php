@@ -26,19 +26,6 @@ function checkResult($success, $fail, $result, $query, $pdo) {
 }
 
 switch ($request) {
-    case "FetchUser":
-        $pin  = $_POST['pin'];
-        $pass = $_POST['password'];
-
-        $query = "SELECT * FROM USERS WHERE pin=$pin AND password='$password'";
-
-        $results = mysqli_query($pdo, $query);
-        if ($results > 0) {
-            $row = mysqli_fetch_assoc($results);
-            print(json_encode($row));
-            mysqli_free_result($results);
-        }
-        break;
     case "AppendHistory": # Append transaction history
         $pin = $_POST['pin'];
         $msg = $_POST['history'];
