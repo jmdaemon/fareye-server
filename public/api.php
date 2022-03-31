@@ -1,10 +1,8 @@
 <?php
 
-// Connect to our database
-$db = new MySQLDatabase;
-
-$request=$_POST['request'];
-$pdo = $db->getPDO();
+/**
+ * Defines commonly used functions used across all requests
+ */
 
 /**
  * Checks if the result is true, and logs an error otherwise
@@ -24,8 +22,4 @@ function checkResult($success, $fail, $result, $query, $pdo) {
         return FALSE;
     }
 }
-
-switch ($request) {
-}
-$db->__destruct;
 ?>
