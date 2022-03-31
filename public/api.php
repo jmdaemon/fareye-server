@@ -32,6 +32,7 @@ class User {
     private $lname;
     private $pin;
     private $pass;
+    private $balance;
 
     // Getters
     public function getFirstName()  { return $this->fname; }
@@ -39,6 +40,7 @@ class User {
     public function getLastName()   { return $this->lname; }
     public function getPin()        { return $this->pin; }
     public function getPassword()   { return $this->pass; }
+    public function getBalance()    { return $this->balance; }
 
     // Setters
     public function setFirstName($fname)  { $this->fname = $fname; }
@@ -46,6 +48,7 @@ class User {
     public function setLastName($lname)   { $this->lname = $lname; }
     public function setPin($pin)          { $this->pin = $pin; }
     public function setPassword($pass)    { $this->pass = $pass; }
+    public function setBalance($bal)      { $this->balance = $bal; }
 }
 
 // Parse a post request into a user
@@ -55,6 +58,7 @@ function parse_user($post) {
     $fname  = $post['firstName'];
     $mname  = $post['middleName'];
     $lname  = $post['lastName'];
+    $bal    = $post['balance'];
 
     $user = new User;
     $user->setFirstName($fname);
@@ -62,6 +66,7 @@ function parse_user($post) {
     $user->setMiddleName($lname);
     $user->setPin($pin);
     $user->setPassword($pass);
+    $user->setBalance($bal);
     return $user;
 }
 
@@ -117,6 +122,36 @@ function fetch_user($pdo, $user) {
             print(json_encode($row));
             mysqli_free_result($results);
         }
+}
+
+// Withdraws money from a user's balance in our database
+function withdraw($pdo, $amount, $user) {
+    // If we have money
+    if ($amount <= $user->getBalance()) {
+        // Take some of it out
+        $newbalance = $user->getBalance() - $amount;
+        $query = "UPDATE USERS SET balance=$newbalance WHERE pin=$user->pin";
+        $results = mysqli_query($pdo, $query);
+
+        $success = ("Withdrawal of Amount $" . $amount . " made.\n");
+        if (checkResult ($success, "", $results, $query, $pdo)) {
+            // Update Log
+        } else {
+            // Log Error
+        }
+    } else if ($amount > $user->getBalance()) {
+        // Process the transaction with an overdraft
+        $newbalance = $user->getBalance()- $amount;
+        $query = "UPDATE USERS SET balance=$newbalance WHERE pin=$user->getPin()";
+        $results = mysqli_query($pdo, $query);
+
+        // Process overdraft
+        $newbalance = $newbalance - 25.0;
+        $query = "UPDATE USERS SET balance=$newbalance WHERE pin=$user->getPin() AND password='$user->getPassword()'";
+        
+        $success = "A bank overdraft fee of $25 will be charged to your account. We thank you for your business.\n";
+        // Log overdraft message
+    }
 }
 
 ?>
