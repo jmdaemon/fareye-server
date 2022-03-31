@@ -226,4 +226,18 @@ function transfer_from($pdo, $amount, $target, $user) {
     deposit($pdo, $amount, $user);
 }
 
+// Reset a user's password
+function reset_password($pdo, $newpass, $user) {
+    $query = "UPDATE USERS SET password='$newpass' WHERE pin=$user->getPin()";
+    $results = mysqli_query($pdo, $query);
+
+    $success = "Password successfully updated.\n";
+    $fail = "Password Reset Unsuccessful . Please Try Again.\n";
+    if (checkResult ($success, "", $results, $query, $pdo)) {
+        // Update Log
+    } else {
+        // Log Error
+    }
+}
+
 ?>
