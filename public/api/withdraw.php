@@ -8,7 +8,7 @@ include('../api.php');
 // Process Post Request
 $pin     = $_POST['pin'];
 $amount  = $_POST['amount'];
-$pass    = $_POST['amount'];
+$pass    = $_POST['password'];
 $balance = $_POST['balance'];
 
 $user = new User;
