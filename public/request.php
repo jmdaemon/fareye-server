@@ -31,30 +31,12 @@ switch ($request) {
         break;
     case "deposit":
         $amount = $_POST['amount'];
-
-        $pin     = $_POST['pin'];
-        $amount  = $_POST['amount'];
-        $pass    = $_POST['password'];
-        $balance = $_POST['balance'];
-
-        $user = new User;
-        $user->setPin($pin);
-        $user->setPassword($pass);
-        $user->setBalance($balance);
-
+        $user = parse_user($_POST);
         deposit($pdo, $amount, $user);
         break;
     case "withdraw":
-        $pin     = $_POST['pin'];
         $amount  = $_POST['amount'];
-        $pass    = $_POST['password'];
-        $balance = $_POST['balance'];
-
-        $user = new User;
-        $user->setPin($pin);
-        $user->setPassword($pass);
-        $user->setBalance($balance);
-
+        $user = parse_user($_POST);
         withdraw($pdo, $amount, $user);
         break;
     case "fetch_user":
