@@ -23,6 +23,9 @@ switch ($request) {
         $user = parse_user($_POST);
         $msg = parse_message($_POST);
         logMessage($pdo, $user, $msg);
+    case "check_pin":
+        $user = parse_user($_POST);
+        check_pin($pdo, $user);
 
 }
 
