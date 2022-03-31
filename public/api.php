@@ -15,7 +15,7 @@ switch ($request) {
         $pin    = $_POST['pin'];
         $query = "INSERT INTO
                 USERS  (fname, mname, lname, balance, pin, history, password)
-                VALUES ($fname, $mname, $lname, 0.0, $pin, '', $password);";
+                VALUES ('$fname', '$mname', '$lname', 0.0, $pin, '', '$password');";
         $results = mysqli_query($pdo, $query);
         if ($results === TRUE) {
             echo "Account Creation Successful.";
@@ -38,6 +38,19 @@ switch ($request) {
             echo "Error: " . $query . "<br>" . $pdo->error;
             return FALSE;
         }
+    case "FetchUser":
+        $pin  = $_POST['pin'];
+        $pass = $_POST['password'];
+
+        $query = "SELECT * FROM USERS WHERE pin=$pin AND password='$password'";
+
+        $results = mysqli_query($db->getPDO(), $query);
+        if ($results > 0) {
+            $row = mysqli_fetch_assoc($results);
+            print(json_encode($row));
+            mysqli_free_result($results);
+        }
+        break;
 }
 $db->__destruct;
 ?>
