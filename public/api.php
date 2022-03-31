@@ -50,7 +50,7 @@ switch ($request) {
 
         $query = "SELECT * FROM USERS WHERE pin=$pin AND password='$password'";
 
-        $results = mysqli_query($db->getPDO(), $query);
+        $results = mysqli_query($pdo, $query);
         if ($results > 0) {
             $row = mysqli_fetch_assoc($results);
             print(json_encode($row));
@@ -62,9 +62,41 @@ switch ($request) {
         $msg = $_POST['history'];
         $query = "UPDATE USERS SET history=CONCAT(history, '$msg') WHERE pin=$pin";
 
-        $results = mysqli_query($db->getPDO(), $query);
+        $results = mysqli_query($pdo, $query);
         checkResult("Account history updated.", "History failed to update.",
             $results === TRUE, $query, $pdo);
+    case "Withdraw":
+        $pin     = $_POST['pin'];
+        $amount  = $_POST['amount'];
+        $pass    = $_POST['amount'];
+        $balance = $_POST['balance'];
+
+        // If we have money
+        if ($amount <= $balance) {
+            // Take some of it out
+            $newbalance = $balance - $amount;
+            $query = "UPDATE USERS SET balance=$newbalance WHERE pin=$pin";
+            $results = mysqli_query($pdo, $query);
+
+            $success = ("Withdrawal of Amount $" . $amount . " made.\n");
+            if (checkResult ($success, "", $results, $query, $pdo)) {
+                // Update Log
+            } else {
+                // Log Error
+            }
+        } else if ($amount > $balance) {
+            // Process the transaction with an overdraft
+            $newbalance = $balance - $amount;
+            $query = "UPDATE USERS SET balance=$newbalance WHERE pin=$pin";
+            $results = mysqli_query($pdo, $query);
+
+            // Process overdraft
+            $newbalance = $newbalance - 25.0;
+            $query = "UPDATE USERS SET balance=$newbalance WHERE pin=$pin AND password='$pass'";
+            
+            $success = "A bank overdraft fee of $25 will be charged to your account. We thank you for your business.\n";
+            // Log overdraft message
+        } break;
 }
 $db->__destruct;
 ?>
