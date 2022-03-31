@@ -26,18 +26,6 @@ function checkResult($success, $fail, $result, $query, $pdo) {
 }
 
 switch ($request) {
-    case "AddAccount":
-        $pass   = $_POST['password'];
-        $fname  = $_POST['firstName'];
-        $mname  = $_POST['middleName'];
-        $lname  = $_POST['lastName'];
-        $pin    = $_POST['pin'];
-        $query = "INSERT INTO
-                USERS  (fname, mname, lname, balance, pin, history, password)
-                VALUES ('$fname', '$mname', '$lname', 0.0, $pin, '', '$password');";
-        $results = mysqli_query($pdo, $query);
-        return checkResult("Account Creation Successful.", "Account Creation Failed.",
-            $results === TRUE, $query, $pdo);
     case "CheckNumber":
         $pin        = $_POST['pin'];
         $query      = "SELECT * FROM USERS WHERE pin LIKE $pin";
