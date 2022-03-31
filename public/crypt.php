@@ -5,9 +5,9 @@ class Crypt {
     private $key;
 
     // Setters
-    public function setKey($key)    { $key = $key; }
-    public function setIV($iv)      { $iv = $iv; }
-    public function setData($data)  { $iv = $data; }
+    public function setKey($key)    { $this->key = $key; }
+    public function setIV($iv)      { $this->iv = $iv; }
+    public function setData($data)  { $this->data = $data; }
 
     // Getters
     public function getKey()        { return $this->key; }
