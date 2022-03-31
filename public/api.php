@@ -136,6 +136,16 @@ function fetch_user($pdo, $user) {
         }
 }
 
+function fetch_history($pdo, $user) {
+    $query = "SELECT * USERS WHERE pin='$user->getPin()' AND password='$user->getPin()'";
+    
+    $results = mysqli_query($pdo, $query);
+    $row = mysqli_fetch_assoc($results);
+    // TODO: Fetch history with mysqli_fetch_field()
+    print (json_encode($row));
+    mysqli_free_result($results);
+}
+
 // Withdraws money from a user's balance in our database
 function withdraw($pdo, $amount, $user) {
     // If we have money
@@ -215,6 +225,7 @@ function transfer_from($pdo, $amount, $target, $user) {
     // Query database for the user's balance
     $targetUser = get_user($pdo, $target->getPin());
     $targetBalance = mysqli_fetch_field($targetUser, "balance");
+    // TODO: Fetch user's balance using mysqli_fetch_field()
 
     // Set our target's balance
     $target->setBalance($targetBalance);

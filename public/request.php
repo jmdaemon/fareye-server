@@ -66,5 +66,10 @@ switch ($request) {
         $user = parse_user($_POST);
         reset_account($pdo, $user);
         break;
+    case 'fetch_history':
+        $user = parse_user($_POST);
+        fetch_history($pdo, $user);
+        break;
+
 }
 ?>
