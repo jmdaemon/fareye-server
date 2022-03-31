@@ -62,6 +62,9 @@ switch ($request) {
         $user = parse_user($_POST);
         reset_password($pdo, $newpass, $user);
         break;
-
+    case 'reset_account':
+        $user = parse_user($_POST);
+        reset_account($pdo, $user);
+        break;
 }
 ?>

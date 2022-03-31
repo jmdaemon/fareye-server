@@ -240,4 +240,18 @@ function reset_password($pdo, $newpass, $user) {
     }
 }
 
+function reset_account($pdo, $user) {
+    $query = "UPDATE USERS SET balance=0.0 WHERE pin=$user->pin"; 
+    $results = mysqli_query($pdo, $query);
+
+    $success = "Account successfully emptied.";
+    $fail = "Account failed to empty.";
+    $message = "So much for \"Leaving something for a rainy day!\"\n";
+    if (checkResult ($success, $fail, $results, $query, $pdo)) {
+        // Update Log
+    } else {
+        // Log Error
+    }
+}
+
 ?>
