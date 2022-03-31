@@ -23,8 +23,7 @@ $target = New User;
 $target->setPin($targetPin);
 $target->setPassword($targetPass);
 
-// Transfer funds from target to user
+// Transfer funds from our account to target account
 transfer_from($pdo, $amount, $target, $user);
 
-// Transfer funds from our account to x account
 ?>
