@@ -106,4 +106,17 @@ function check_pin($pdo, $user) {
     return checkResult("Account number is unique.", "Account already associated with a user.",
         $results === FALSE, $query, $pdo);
 }
+
+// Returns the user from the database if their pin and password match
+function fetch_user($pdo, $user) {
+        $query = "SELECT * FROM USERS WHERE pin=$user->getPin() AND password='$user->getPassword()'";
+
+        $results = mysqli_query($pdo, $query);
+        if ($results > 0) {
+            $row = mysqli_fetch_assoc($results);
+            print(json_encode($row));
+            mysqli_free_result($results);
+        }
+}
+
 ?>
