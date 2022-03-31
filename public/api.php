@@ -193,7 +193,7 @@ function get_user($pdo, $pin) {
 }
 
 // Transfer funds from the target account to our account
-function transfer_from($pdo, $amount, $target) {
+function transfer_from($pdo, $amount, $target, $user) {
     // Assert the pin number exists in our database
     if (!user_exists($pdo, $target->getPin())) {
         // Log Error
@@ -209,7 +209,9 @@ function transfer_from($pdo, $amount, $target) {
 
     // Execute withdrawal
     withdraw($pdo, $amount, $target);
+
     // Deposit into our account
+    deposit($pdo, $amount, $user);
 }
 
 ?>
