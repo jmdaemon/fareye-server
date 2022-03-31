@@ -70,6 +70,18 @@ function parse_user($post) {
     return $user;
 }
 
+// Parse a post request into a target user
+function parse_target($post) {
+    $targetPin  = $_POST['targetPin'];
+    $targetPass = $_POST['targetPass'];
+
+    // Initialize Target User
+    $target = New User;
+    $target->setPin($targetPin);
+    $target->setPassword($targetPass);
+    return $target;
+}
+
 // Adds an account to the database
 function add_account($pdo, $user) {
     $query = "INSERT INTO

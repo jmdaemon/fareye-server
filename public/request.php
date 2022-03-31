@@ -4,7 +4,6 @@
  * Handle all the Fareye application requests
  */
 
-
 # Imports
 include('../api.php');
 
@@ -12,9 +11,9 @@ include('../api.php');
 $db = new MySQLDatabase;
 $pdo = $db->getPDO();
 
+// Deal with all the requests
 $request=$_POST['request'];
 
-// Deal with all the requests
 switch ($request) {
     case "add_account":
         $user = parse_user($_POST);
@@ -45,16 +44,8 @@ switch ($request) {
         break;
     case "transfer_from":
         $amount = $_POST['amount'];
-
         $user = parse_user($_POST);
-
-        // Initialize Target User
-        $targetPin  = $_POST['targetPin'];
-        $targetPass = $_POST['targetPass'];
-
-        $target = New User;
-        $target->setPin($targetPin);
-        $target->setPassword($targetPass);
+        $target = parse_target($_POST);
 
         // Transfer funds from target to user
         transfer_from($pdo, $amount, $target, $user);
@@ -62,14 +53,7 @@ switch ($request) {
     case "transfer_to":
         $amount = $_POST['amount'];
         $user = parse_user($_POST);
-
-        // Initialize Target User
-        $targetPin  = $_POST['targetPin'];
-        $targetPass = $_POST['targetPass'];
-
-        $target = New User;
-        $target->setPin($targetPin);
-        $target->setPassword($targetPass);
+        $target = parse_target($_POST);
 
         // Transfer funds from our account to target account
         transfer_from($pdo, $amount, $target, $user);
