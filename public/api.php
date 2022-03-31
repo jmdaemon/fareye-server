@@ -98,4 +98,12 @@ function logMessage($pdo, $user, $msg) {
         checkResult("Account history updated.", "History failed to update.",
             $results === TRUE, $query, $pdo);
 }
+
+// Checks if the account pin is unique
+function check_pin($pdo, $user) {
+    $query      = "SELECT * FROM USERS WHERE pin LIKE $user->getPin()";
+    $results    = mysqli_query($pdo, $query);
+    return checkResult("Account number is unique.", "Account already associated with a user.",
+        $results === FALSE, $query, $pdo);
+}
 ?>
