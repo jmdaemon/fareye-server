@@ -154,6 +154,26 @@ function withdraw($pdo, $amount, $user) {
     }
 }
 
+// Deposits some amount of money into a user's balance
+function deposit($pdo, $amount, $user) {
+    if ($amount > 0) {
+        // Add the amount to our user's balance
+        $newbalance = $user->getBalance() + $amount;
+        $query = "UPDATE USERS SET balance=$newbalance WHERE pin=$user->getPin()"; 
+        $results = mysqli_query($pdo, $query);
+
+        $success = "Deposit of Amount $" . $amount . " made.\n";
+        if (checkResult ($success, "", $results, $query, $pdo)) {
+            // Update Log
+        } else {
+            // Log Error
+        }
+    } else if ($amount < 0) {
+        $message = ("Deposit unsuccessful: invalid amount.\n");
+        // Log error
+    }
+}
+
 // Returns true if the user was found in the database and false otherwise
 function user_exists($pdo, $pin) {
     $query = "SELECT * FROM USERS WHERE pin LIKE $pin";
