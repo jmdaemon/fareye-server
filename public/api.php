@@ -26,12 +26,6 @@ function checkResult($success, $fail, $result, $query, $pdo) {
 }
 
 switch ($request) {
-    case "CheckNumber":
-        $pin        = $_POST['pin'];
-        $query      = "SELECT * FROM USERS WHERE pin LIKE $pin";
-        $results    = mysqli_query($pdo, $query);
-        return checkResult("Account number is unique.", "Account already associated with a user.",
-            $results === FALSE, $query, $pdo);
     case "FetchUser":
         $pin  = $_POST['pin'];
         $pass = $_POST['password'];
