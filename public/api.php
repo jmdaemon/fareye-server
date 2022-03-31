@@ -26,14 +26,6 @@ function checkResult($success, $fail, $result, $query, $pdo) {
 }
 
 switch ($request) {
-    case "AppendHistory": # Append transaction history
-        $pin = $_POST['pin'];
-        $msg = $_POST['history'];
-        $query = "UPDATE USERS SET history=CONCAT(history, '$msg') WHERE pin=$pin";
-
-        $results = mysqli_query($pdo, $query);
-        checkResult("Account history updated.", "History failed to update.",
-            $results === TRUE, $query, $pdo);
 }
 $db->__destruct;
 ?>
