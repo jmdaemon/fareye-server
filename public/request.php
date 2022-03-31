@@ -44,6 +44,19 @@ switch ($request) {
 
         deposit($pdo, $amount, $user);
         break;
+    case "withdraw":
+        $pin     = $_POST['pin'];
+        $amount  = $_POST['amount'];
+        $pass    = $_POST['password'];
+        $balance = $_POST['balance'];
+
+        $user = new User;
+        $user->setPin($pin);
+        $user->setPassword($pass);
+        $user->setBalance($balance);
+
+        withdraw($pdo, $amount, $user);
+        break;
 }
 
 ?>
