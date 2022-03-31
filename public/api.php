@@ -51,6 +51,20 @@ switch ($request) {
             mysqli_free_result($results);
         }
         break;
+    case "AppendHistory": # Append transaction history
+        $pin = $_POST['pin'];
+        $msg = $_POST['history'];
+        $query = "UPDATE USERS SET history=CONCAT(history, '$msg') WHERE pin=$pin";
+
+        $results = mysqli_query($db->getPDO(), $query);
+        if ($results === TRUE) {
+            print "Account history updated.";
+            return True;
+        } else {
+            print("History failed to update.");
+            echo "Error: " . $sql . "<br>" . $con->error;
+            return False;
+        }
 }
 $db->__destruct;
 ?>
