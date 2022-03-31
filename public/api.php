@@ -154,4 +154,42 @@ function withdraw($pdo, $amount, $user) {
     }
 }
 
+// Returns true if the user was found in the database and false otherwise
+function user_exists($pdo, $pin) {
+    $query = "SELECT * FROM USERS WHERE pin LIKE $pin";
+    $results = mysqli_query($pdo, $query);
+    if ($results > 0)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+// Returns the user(s) found in the database
+// Assume that only one user is ever found in the database
+function get_user($pdo, $pin) {
+    $query = "SELECT * FROM USERS WHERE pin LIKE $pin";
+    $results = mysqli_query($pdo, $query);
+    return $results;
+}
+
+// Transfer funds from the target account to our account
+function transfer_from($pdo, $amount, $target) {
+    // Assert the pin number exists in our database
+    if (!user_exists($pdo, $target->getPin())) {
+        // Log Error
+        return FALSE;
+    }
+
+    // Query database for the user's balance
+    $targetUser = get_user($pdo, $target->getPin());
+    $targetBalance = mysqli_fetch_field($targetUser, "balance");
+
+    // Set our target's balance
+    $target->setBalance($targetBalance);
+
+    // Execute withdrawal
+    withdraw($pdo, $amount, $target);
+    // Deposit into our account
+}
+
 ?>
