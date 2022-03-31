@@ -46,10 +46,7 @@ switch ($request) {
     case "transfer_from":
         $amount = $_POST['amount'];
 
-        $pin = $_POST['pin'];
-
-        $user = New User;
-        $user->setPin($pin);
+        $user = parse_user($_POST);
 
         // Initialize Target User
         $targetPin  = $_POST['targetPin'];
@@ -64,11 +61,7 @@ switch ($request) {
         break;
     case "transfer_to":
         $amount = $_POST['amount'];
-
-        $pin = $_POST['pin'];
-
-        $user = New User;
-        $user->setPin($pin);
+        $user = parse_user($_POST);
 
         // Initialize Target User
         $targetPin  = $_POST['targetPin'];
