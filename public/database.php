@@ -35,6 +35,9 @@ class MySQLDatabase extends Database {
 
     // Close the database connection
     public function __destruct() { $this->pdo = null; }
+
+    // Returns the PDO
+    public function getPDO() { return $this->pdo; }
 }
 
 class UsersTable extends MySQLDatabase {
